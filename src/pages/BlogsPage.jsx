@@ -4,7 +4,7 @@ import AppCard from '../components/AppCard';
 import { NavLink } from 'react-router-dom';
 
 function BlogsPage() {
-    const urlApi = 'http://localhost:3000';
+  const urlApi = 'http://localhost:3000';
 
   const [posts, setPosts] = useState([]);
   const [tags, setTags] = useState([]);
@@ -46,7 +46,7 @@ function BlogsPage() {
   }
 
 
- 
+
 
 
   // Elimina post
@@ -60,10 +60,10 @@ function BlogsPage() {
     )
   }
 
-  
+
   const handleRemovePostTag = (postId, tag) => {
     console.log("Rimuovi tag:", postId, tag);
-  
+
     // Trova il post da aggiornare
     const updatedPosts = posts.map((post) => {
       if (post.id === postId) {
@@ -74,13 +74,13 @@ function BlogsPage() {
       }
       return post;
     });
-  
+
     // Aggiorna lo stato del frontend
     setPosts(updatedPosts);
-  
+
     // Trova il post aggiornato per la chiamata API
     const updatedPost = updatedPosts.find((post) => post.id === postId);
-  
+
     // Effettua la chiamata PUT per aggiornare il post sul backend
     axios
       .put(`${urlApi}/posts/${postId}`, updatedPost)
@@ -91,7 +91,7 @@ function BlogsPage() {
         console.error("Errore durante l'aggiornamento del post:", error);
       });
   };
-  
+
 
 
   // function capitalizeWords(str) {
@@ -107,9 +107,6 @@ function BlogsPage() {
 
   return (
     <>
-
-
-
       {/* <div className="container d-inline-block my-5">
         <ul>
           <h2 className='mb-3'>Lista tag:</h2>
@@ -124,36 +121,39 @@ function BlogsPage() {
       </div> */}
 
       {/* Form posts */}
-      
+
 
       {/* Lista posts */}
-      <div className="container m-5 d-flex flex-column gap-3">
 
+      <div className="w-100">
 
-        <h2>Elenco post</h2>
-        {posts.length > 0 ?
+        <div className=' m-5 d-flex flex-column gap-3'>
 
-          (posts.map((curPost) => (
+          <h2>Elenco post</h2>
+          {posts.length > 0 ?
 
-            <AppCard
-              key={curPost.id}
-              post={curPost}
-              onDelete={handleDelete}
-              onDeleteTag={handleRemovePostTag}
-            />
-          )))
-          :
-          (
-            <div className="card">
-              <div className="card-body">Nessun post presente.</div>
-            </div>
-          )
+            (posts.map((curPost) => (
 
-        }
-                <NavLink to={"/form"} className='btn btn-primary'>Aggiungi Post</NavLink>
+              <AppCard
+                key={curPost.id}
+                post={curPost}
+                onDelete={handleDelete}
+                onDeleteTag={handleRemovePostTag}
+              />
+            )))
+            :
+            (
+              <div className="card">
+                <div className="card-body">Nessun post presente.</div>
+              </div>
+            )
 
+          }
+
+          <NavLink to={"/form"} className='btn btn-primary'>Aggiungi Post</NavLink>
+
+        </div>
       </div>
-
     </>
   )
 

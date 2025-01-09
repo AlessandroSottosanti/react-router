@@ -8,6 +8,7 @@ import AppLayout from "./components/AppLayout";
 import HomePage from "./pages/HomePage";
 import BlogsPage from "./pages/BlogsPage";
 import FormPage from "./pages/FormPage";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<AppLayout/>}>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/blogs" element={<BlogsPage/>} />
+          <Route path="/about-us" element={<AboutUsPage/>} />
           <Route path="/form" element={<FormPage/>} />
         </Route>
       </Routes>

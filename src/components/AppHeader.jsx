@@ -9,6 +9,10 @@ function AppHeader() {
         {
             path: "/blogs",
             title: "Blogs"
+        },
+        {
+            path: "/about-us",
+            title: "About us"
         }
 
     ]

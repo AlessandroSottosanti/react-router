@@ -8,8 +8,6 @@ function AppLayout() {
 
         <Outlet/>
 
-        <footer>FOOTER</footer>
-
         </>
     )
 }

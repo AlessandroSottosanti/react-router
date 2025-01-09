@@ -3,10 +3,11 @@
 // NOTES: potrei gestire oltre al salvataggio dei post anche i tag con una nuova API, ma tenendo in considerazione che i dati in futuro verranno da una sorgente dinamica come un db, 
 //        non sarà necessario farlo in quanto l'api index dei tag restituisce tutti i tag che trova nei post caricati, ora non funziona perché fa riferimento ad un file statico
 
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import AppLayout from "./components/AppLayout"
-import HomePage from "./components/HomePage"
-import BlogsPage from "./components/BlogsPage"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
+import HomePage from "./pages/HomePage";
+import BlogsPage from "./pages/BlogsPage";
+import FormPage from "./pages/FormPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route element={<AppLayout/>}>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/blogs" element={<BlogsPage/>} />
+          <Route path="/form" element={<FormPage/>} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -22,4 +24,4 @@ function App() {
 
 }
 
-export default App
+export default App;

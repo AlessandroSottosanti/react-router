@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AppForm from "../components/AppForm";
+import { useNavigate } from "react-router-dom";
 
 function FormPage() {
 
   const urlApi = 'http://localhost:3000';
 
+  const navigateTo = useNavigate();
   
   useEffect(() => {
     getPosts();
@@ -67,6 +69,7 @@ function FormPage() {
     }).then((resp) => {
       console.log(resp.status, resp.data);
       alert("Nuovo post salvato con successo!");
+      navigateTo("/blogs");
     });
   };
 

@@ -12,7 +12,7 @@ function AppCard({ post, onDelete, onDeleteTag }) {
         <div className="container d-flex">
           {post.tags.map((tag) => {
             return (
-                <li key={tag.id} className="bg-primary text-white p-3 m-2">{tag}<button className="btn btn-danger ms-3" onClick={() => onDeleteTag(post.id, tag)}>x</button></li>
+                <li key={tag.id} className="tag ">{tag}<button className="btn btn-danger ms-3" onClick={() => onDeleteTag(post.id, tag)}>x</button></li>
             )
           })}
         </div>

@@ -20,7 +20,7 @@ function AppForm({ formData, tags, newTag, setNewTag, onSubmit, onInputChange, t
 
           <div className="d-flex row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 justify-content-center align-items-center gap-2">
             {tags.map((tag) => (
-              <div className='col card container d-flex-inline flex-row align-items-center justify-content-between my-2 gap-2' key={tag}>
+              <div className='col tag d-flex align-items-center justify-content-between gap-2' key={tag}>
                 <input
                   type="checkbox"
                   id={tag}

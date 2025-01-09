@@ -29,3 +29,21 @@ a.nav-link:hover {
 .logo{
   font-size: 1.5rem;
 }
+
+.card{
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1em 0;
+}
+
+.card-header {
+  background-color: #0D6EFD;
+  color: white;
+}
+
+.tag{
+  margin: 1rem;
+  padding-left: 1rem;
+  border-radius: 6px;
+  background-color: blueviolet;
+  color: white;
+}

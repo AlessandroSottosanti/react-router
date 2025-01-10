@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AppForm from "../components/AppForm";
+import AppForm from "../../components/AppForm";
 import { useNavigate } from "react-router-dom";
 
 function FormPage() {

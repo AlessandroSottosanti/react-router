@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import AppCard from '../components/AppCard';
+import AppCard from '../../components/AppCard';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function BlogsPage() {
   const urlApi = 'http://localhost:3000';
 
   const [posts, setPosts] = useState([]);
   const [tags, setTags] = useState([]);
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     getPosts();
@@ -93,7 +97,6 @@ function BlogsPage() {
   };
 
 
-
   // function capitalizeWords(str) {
   //   return str
   //     .split(' ')
@@ -130,6 +133,11 @@ function BlogsPage() {
         <div className=' m-5 d-flex flex-column gap-3'>
 
           <h2>Elenco post</h2>
+
+          <div className='d-flex'>
+            <NavLink to={"/blogs/create"} className='btn btn-primary'>+ Aggiungi Post</NavLink>
+          </div>
+
           {posts.length > 0 ?
 
             (posts.map((curPost) => (
@@ -150,7 +158,6 @@ function BlogsPage() {
 
           }
 
-          <NavLink to={"/form"} className='btn btn-primary'>Aggiungi Post</NavLink>
 
         </div>
       </div>

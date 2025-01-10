@@ -6,20 +6,30 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import HomePage from "./pages/HomePage";
-import BlogsPage from "./pages/BlogsPage";
-import FormPage from "./pages/FormPage";
+import BlogsPage from "./pages/blog/BlogsPage";
+import FormPage from "./pages/blog/FormPage";
 import AboutUsPage from "./pages/AboutUsPage";
+import PostDetailsPage from "./pages/blog/PostDetailsPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AppLayout/>}>
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="/blogs" element={<BlogsPage/>} />
-          <Route path="/about-us" element={<AboutUsPage/>} />
-          <Route path="/form" element={<FormPage/>} />
+
+        <Route element={<AppLayout />}>
+
+          <Route path="/" element={<HomePage />}/>
+
+          <Route path="/blogs" >
+            <Route index element={<BlogsPage />} />
+            <Route path="/blogs/create" element={<FormPage />} />
+            <Route path="/blogs/details/:id" element={<PostDetailsPage />}/>
+          </Route>
+
+          <Route path="/about-us" element={<AboutUsPage />} />
+
         </Route>
+
       </Routes>
     </BrowserRouter>
   )

@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 function AppCard({ post, onDelete, onDeleteTag }) {
   return (
     <div className="card" key={post.id}>
+
       <div className="card-header d-flex justify-content-between align-items-center">
         <h2>{post.title}</h2>
+        <Link className="btn btn-info text-white ms-3" to={`/blogs/details/${post.id}`} >Dettagli</Link>
         <button onClick={() => onDelete(post.id)} className='btn btn-danger'>Elimina</button>
-        <Link className="btn btn-warning ms-3" to={`/blogs/details/${post.id}`} >Dettagli</Link>
       </div>
+
       <div className="card-body d-flex flex-column justify-content-center my-5 gap-3">
         <div className='d-flex justify-content-center'><img src={post.image} alt="" /></div>
         <p>{post.content}</p>
@@ -22,6 +24,7 @@ function AppCard({ post, onDelete, onDeleteTag }) {
           })}
         </div>
       </div>
+      
     </div>
   )
 }

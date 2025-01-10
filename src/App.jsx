@@ -18,12 +18,12 @@ function App() {
 
         <Route element={<AppLayout />}>
 
-          <Route path="/" element={<HomePage />}/>
+          <Route path="/" element={<HomePage />} />
 
           <Route path="/blogs" >
             <Route index element={<BlogsPage />} />
-            <Route path="/blogs/create" element={<FormPage />} />
-            <Route path="/blogs/details/:id" element={<PostDetailsPage />}/>
+            <Route path="create" element={<FormPage />} />
+            <Route path="details/:id" element={<PostDetailsPage />} />
           </Route>
 
           <Route path="/about-us" element={<AboutUsPage />} />

@@ -8,12 +8,10 @@ function PostDetailsPage() {
     const [post, setPost] = useState(null);
     const [countPosts, setCountPosts] = useState(0);
     const { id } = useParams();
-    const [curId, setCurId] = useState(parseInt(id));
     const pagesArray = [];
 
     const navigate = useNavigate();
 
-    let apiUrl = 'http://localhost:3000';
 
     useEffect(() => {
         axios.get(`${apiUrl}/posts/${id}`).then((resp) => {
@@ -25,24 +23,25 @@ function PostDetailsPage() {
             setCountPosts(resp.data.count);
             console.log("posts count", countPosts);
         })
-    }, [curId]);
+    }, [id]);
 
-    const nextPost = (curId) => {
-        console.log("carica post successivo a", curId);
-        setCurId(curId + 1);
-        navigate(`../../blogs/details/${curId + 1}`)
+    const nextPost = () => {
+        const nextId = parseInt(id) + 1;
+        if (nextId <= countPosts) {
+            navigate(`/blogs/details/${nextId}`);
+        }
     } 
 
-    const previousPost = (curId) => {
-        console.log("carica post precedente a", curId);
-        setCurId(curId - 1);
-        navigate(`../../blogs/details/${curId - 1}`);
+    const previousPost = () => {
+        const prevId = parseInt(id) - 1;
+        if (prevId >= 1) {
+            navigate(`/blogs/details/${prevId}`);
+        }
     }
 
     const changePage = (page) => {
         console.log(`cambio a pagina ${page}`);
-        setCurId(page);
-        navigate(`../../blogs/details/${page}`);
+        navigate(`/blogs/details/${page}`);
     }
 
     for (let i = 1; i <= countPosts; i++) {
@@ -54,24 +53,24 @@ function PostDetailsPage() {
         <>
         {/* <button  onClick={() => navigate(-1)} className="btn btn-secondary m-2">{`<`}</button> */}
         <button  onClick={() => navigate('/blogs')} className="btn btn-secondary m-2">{`<`}</button>
-            <div className="container d-flex my-5 gap-3">
-                <button onClick={() => previousPost(curId)} className={`btn btn-primary ${parseInt(id) === 1 && 'disabled'}`} to={``}>Precedente</button>
+            <div className="container d-flex justify-content-center my-5 gap-3">
+                <button onClick={() => previousPost(id)} className={`btn btn-primary ${parseInt(id) === 1 && 'disabled'}`} to={``}>Precedente</button>
                 <div className="d-flex gap-1">
                     {pagesArray.map((page, index) => (
                         <button key={index} onClick={() => changePage(page)} className="btn btn-secondary">{page}</button>
                     ))}
                 </div>
-                <button onClick={() => nextPost(curId)} className={`btn btn-primary ${parseInt(id) === countPosts && 'disabled'}`} to={``}>Successivo</button>
+                <button onClick={() => nextPost(id)} className={`btn btn-primary ${parseInt(id) === countPosts && 'disabled'}`} to={``}>Successivo</button>
             </div>
 
             <div className="container d-flex flex-column my-5">
 
 
                 {post && (
-                    <div>
+                    <div className="d-flex flex-column gap-3">
+                        <img src={post.image} alt="" />                        
                         <h1>{post.title}</h1>
                         <p>{post.content}</p>
-                        <img src={post.image} alt="" />
                     </div>
                 )}
 

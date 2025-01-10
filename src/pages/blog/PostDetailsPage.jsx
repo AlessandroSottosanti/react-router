@@ -17,7 +17,10 @@ function PostDetailsPage() {
         axios.get(`${apiUrl}/posts/${id}`).then((resp) => {
             console.log("post con id", id);
             setPost(resp.data);
-        })
+        }).catch((resp) => {
+            console.log(resp.data);
+            navigate('/post-not-found');
+        } )
 
         axios.get(`${apiUrl}/posts/`).then((resp) => {
             setCountPosts(resp.data.count);
@@ -51,6 +54,7 @@ function PostDetailsPage() {
 
     return (
         <>
+        {/* Commentato perché torna alla pagina precedente, quindi se mi trovavo in un altro post resto nella pagina di dettagli */}
         {/* <button  onClick={() => navigate(-1)} className="btn btn-secondary m-2">{`<`}</button> */}
         <button  onClick={() => navigate('/blogs')} className="btn btn-secondary m-2">{`<`}</button>
             <div className="container d-flex justify-content-center my-5 gap-3">

@@ -10,6 +10,8 @@ import BlogsPage from "./pages/blog/BlogsPage";
 import FormPage from "./pages/blog/FormPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import PostDetailsPage from "./pages/blog/PostDetailsPage";
+import PageNotFound from "./pages/errorPages/PageNotFound";
+import PostNotFound from "./pages/errorPages/PostNotFound";
 
 function App() {
   return (
@@ -23,11 +25,14 @@ function App() {
           <Route path="/blogs" >
             <Route index element={<BlogsPage />} />
             <Route path="create" element={<FormPage />} />
-            <Route path="details/:id" element={<PostDetailsPage />} />
+            <Route path="details/:id" element={<PostDetailsPage />}/>
+            <Route path="*" element={<PageNotFound />} />
           </Route>
 
           <Route path="/about-us" element={<AboutUsPage />} />
 
+          <Route path="/post-not-found" element={<PostNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
 
       </Routes>

@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AppCard from '../../components/AppCard';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import {GlobalContext} from '../../contexts/GlobalContext';
+
 
 function BlogsPage() {
   const urlApi = 'http://localhost:3000';
 
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [tags, setTags] = useState([]);
+  const {posts} = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    getPosts();
+    // getPosts();
     getTags();
   },
     []
@@ -33,12 +36,12 @@ function BlogsPage() {
 
 
   // get posts
-  const getPosts = () => {
-    axios.get(`${urlApi}/posts/`).then((resp) => {
-      console.log(resp.data.postsArray)
-      setPosts(resp.data.postsArray);
-    })
-  }
+  // const getPosts = () => {
+  //   axios.get(`${urlApi}/posts/`).then((resp) => {
+  //     console.log(resp.data.postsArray)
+  //     setPosts(resp.data.postsArray);
+  //   })
+  // }
 
 
   // get tags
@@ -58,7 +61,7 @@ function BlogsPage() {
     setPosts(posts.filter((post) => post.id !== id));
     axios.delete(`${urlApi}/posts/${id}`).then((resp) => {
       console.log(resp.data);
-      getPosts();
+      // getPosts();
       getTags();
     }
     )

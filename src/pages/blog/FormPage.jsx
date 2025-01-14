@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AppForm from "../../components/AppForm";
 import { useNavigate } from "react-router-dom";
+import {GlobalContext} from '../../contexts/GlobalContext';
 
 function FormPage() {
 
   const urlApi = 'http://localhost:3000';
 
+  const {posts} = useContext(GlobalContext);
   const navigateTo = useNavigate();
   
   useEffect(() => {
@@ -23,7 +25,6 @@ function FormPage() {
     tags: [],
   }
 
-  const [posts, setPosts] = useState([]);
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
   const [formData, setFormData] = useState(initialPost); // object
@@ -34,14 +35,6 @@ function FormPage() {
     axios.get(`${urlApi}/tags/`).then((resp) => {
       console.log("resp data tags: ", resp.data.tags)
       setTags(resp.data.tags);
-    })
-  }
-
-  // get posts
-  const getPosts = () => {
-    axios.get(`${urlApi}/posts/`).then((resp) => {
-      console.log(resp.data.postsArray)
-      setPosts(resp.data.postsArray);
     })
   }
 
